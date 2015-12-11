@@ -1,0 +1,9 @@
+[submodule "database"]
+	path = database
+	url = git@github.com:ionstech/ttbz_db.git
+[submodule "volume"]
+	path = volume
+	url = git@github.com:mssio/tutum-ubuntu.git
+[submodule "app"]
+	path = app
+	url = git@github.com:mssio/docker-bugzilla.git

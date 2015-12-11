@@ -1,0 +1,27 @@
+vol:
+  image: mssio/ssh-ubuntu:14.04
+  volumes:
+    - /var/lib/mysql
+  tags:
+    - bugzilla
+db:
+  image: ionstech/ttbz_db:5.7.9
+  volumes_from:
+    - vol
+  environment:
+    - "MYSQL_ROOT_PASSWORD=rahasia"
+  tags:
+    - bugzilla
+ttbz_app:
+  image: mssio/docker-bugzilla:4.4.10
+  links:
+    - "db:mysql"
+  ports:
+    - "80:80"
+  environment:
+    - TTBZ_APP_SERVER_NAME=bugzilla.com.dev
+    - TTBZ_APP_SECRET_KEY=591D5F898F5910DB43789290EBBBFF0BED48ADCF9E988F822476E4D36AEDFA49
+    - TTBZ_APP_SERVER_ADMIN=mssio@mailinator.com
+    - TTBZ_APP_ADMIN_EMAIL=mssio@mailinator.com
+    - TTBZ_APP_ADMIN_PASSWORD=rahasia
+    - TTBZ_APP_ADMIN_REAL_NAME=Mario
